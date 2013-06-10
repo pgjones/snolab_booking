@@ -1,0 +1,39 @@
+{% load snolab_booking_filters %}
+<h2>{{ now.1|month_name }} {{ now.0 }}</h2> 
+<table width="100%">
+<tr>
+<td>
+  <a href="{% url 'visits' year=prev.0 month=prev.1 %}">{{ prev.1|month_name}}</a>
+</td>
+<td align="right">
+  <a href="{% url 'visits' next.0 next.1 %}">{{ next.1|month_name}}</a>
+</td>
+</tr>
+</table>
+
+<center>
+<table width="100%">
+<tr>
+<th>Sunday</th>
+<th>Monday</th>
+<th>Tuesday</th>
+<th>Wednesday</th>
+<th>Thursday</th>
+<th>Friday</th>
+<th>Saturday</th>
+</tr>
+<tr>
+{% for day in day_visits %}
+  {% if forloop.counter0 != 0 and forloop.counter0|divisibleby:7 %}
+    </tr><tr>
+  {% endif %}
+  <td valign='top'>
+  <center>{{ day.0 }}</center><br />
+  {% for visit in day.1 %}
+    <a href="{% url 'visit' visit.pk %}">{{ visit.contact }}</a><br />
+  {% endfor %}
+  </td>
+{% endfor %}
+</tr>
+</table>
+</center>

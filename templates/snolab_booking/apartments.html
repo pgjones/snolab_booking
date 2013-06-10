@@ -1,0 +1,5 @@
+{% for apartment in apartment_list %}
+<a href="{% url 'apartment' apartment.pk %}">{{ apartment }}</a><br />
+{% empty %}
+No apartments.
+{% endfor %}

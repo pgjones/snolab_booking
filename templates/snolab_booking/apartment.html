@@ -1,0 +1,21 @@
+<h1>{{ apartment.short_name }}</h1>
+{{ apartment.address_line1 }}<br />
+{% if apartment.address_line2 %}
+{{ apartment.address_line2 }}<br />
+{% endif %}
+{{ apartment.address_city }}<br />
+{{ apartment.address_zip }}
+
+<h3>Contact & Information</h3>
+Contact : <a href="mailto:{{ apartment.contact }}">{{ apartment.contact }}</a> <br />
+Priority Experiments: {{ apartment.experiment }} <br />
+Information:<br /> {{ apartment.information }}
+
+<h3>Beds</h3>
+{% for bed in bed_list %}
+  Number: {{ bed.number }}
+  Type: {{ bed.type }}<br />
+  Infornation: {{ bed.information }} <hr />
+  {% empty %}
+  No Beds
+{% endfor %}
