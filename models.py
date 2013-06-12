@@ -7,7 +7,7 @@ class Apartment(models.Model):
     address_zip = models.CharField(max_length=20)
     address_city = models.CharField(max_length=200)
     contact = models.EmailField(max_length=254) # 254 is recommended in docs
-    information = models.TextField() # Extra details
+    information = models.TextField(blank=True) # Extra details
     short_name = models.CharField(max_length=10) # Short descriptor
     experiment = models.CharField(max_length=200)
     def __unicode__(self):
@@ -22,7 +22,7 @@ class Bed(models.Model):
     apartment = models.ForeignKey(Apartment)
     number = models.IntegerField()
     type = models.CharField(max_length=6, choices=BED_TYPE)
-    information = models.TextField() # Extra details
+    information = models.TextField(blank=True) # Extra details
     def __unicode__(self):
         return self.apartment.short_name + " bed " + str(self.number)
 

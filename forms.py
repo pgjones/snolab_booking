@@ -4,7 +4,8 @@ from django.forms.extras.widgets import SelectDateWidget
 from snolab_booking.models import Visit, Bed
 
 class VisitForm(forms.Form):
-    contact = forms.EmailField(max_length=254) # 254 is recommended in docs
+    contact = forms.EmailField(label="Your email address:",
+                               max_length=254) # 254 is recommended in docs
     check_in = forms.DateTimeField(widget=SelectDateWidget)
     check_out = forms.DateTimeField(widget=SelectDateWidget)
     experiment = forms.CharField(max_length=200)

@@ -4,5 +4,6 @@
 <input type="submit" value="Submit" />
 </form>
 {% else %}
-Thanks!
+Thanks!<br />
+<a href="{% url 'index' %}">Return</a>
 {% endif %}

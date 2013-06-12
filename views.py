@@ -116,12 +116,12 @@ def visit_booking(request):
                           check_out=clean_data['check_out'],
                           experiment=clean_data['experiment'])
             visit.save()
-#            send_mail("Room Request", clean_data['contact']
-#                cd['subject'],
-#                cd['message'],
-#                cd.get('email', 'noreply@example.com'),
-#                ['siteowner@example.com'],
-#                )
+            room_contact = Bed.objects.filter(pk=clean_data['bed_request'])
+            send_mail("Room Request", "%s from %s to %s for experiment %s." % (clean_data['bed_request'], 
+                                                                               clean_data['check_in'], 
+                                                                               clean_data['check_out'],
+                                                                               clean_data['experiment']),
+                      "noreply@snolab.com", [clean_data['contact'], room_contact[0].apartment.contact])
             return render(request, 'snolab_booking/visit_booking.html') # Redirect after POST
     else:
         form = VisitForm() # An unbound form
