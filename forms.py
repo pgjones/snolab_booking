@@ -9,7 +9,7 @@ class VisitForm(forms.Form):
     check_in = forms.DateTimeField(widget=SelectDateWidget)
     check_out = forms.DateTimeField(widget=SelectDateWidget)
     experiment = forms.CharField(max_length=200)
-    bed_request = forms.ModelMultipleChoiceField(queryset=Bed.objects.all(), required=False)
+    bed_request = forms.ModelMultipleChoiceField(queryset=Bed.objects.all(), required=False, help_text="Optional Bed Request")
     def clean(self):
         super(VisitForm, self).clean()
         check_in = self.cleaned_data.get("check_in")

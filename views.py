@@ -39,7 +39,7 @@ def bookings_per_month(year, month):
         day_information.append([day, bookings])
     return day_information                    
 
-def bookings(request, year, month):
+def bookings(request, year=time.localtime()[0], month=time.localtime()[1]):
     """ View of bookings in a month."""
     year = int(year)
     month = int(month)
@@ -63,7 +63,7 @@ def visits_per_month(year, month):
         day_information.append([day, visits])
     return day_information
 
-def visits(request, year, month):
+def visits(request, year=time.localtime()[0], month=time.localtime()[1]):
     """ View of visits in a month."""
     year = int(year)
     month = int(month)
@@ -104,13 +104,12 @@ def visit(request, visit_id):
     visit = get_object_or_404(Visit, pk=visit_id)
     return render(request, 'snolab_booking/visit.html', {'visit' : visit})
 
-def visit_booking(request):
+def book_visit(request):
     """ Book visit form."""
     if request.method == 'POST': 
         form = VisitForm(request.POST) # A form bound to the POST data
         if form.is_valid():
             clean_data = form.cleaned_data
-            print clean_data
             visit = Visit(contact=clean_data['contact'], 
                           check_in=clean_data['check_in'],
                           check_out=clean_data['check_out'],
@@ -122,7 +121,7 @@ def visit_booking(request):
                                                                                clean_data['check_out'],
                                                                                clean_data['experiment']),
                       "noreply@snolab.com", [clean_data['contact'], room_contact[0].apartment.contact])
-            return render(request, 'snolab_booking/visit_booking.html') # Redirect after POST
+            return render(request, 'snolab_booking/book_visit.html') # Redirect after POST
     else:
         form = VisitForm() # An unbound form
-    return render(request, 'snolab_booking/visit_booking.html', {'form': form})
+    return render(request, 'snolab_booking/book_visit.html', {'form': form})

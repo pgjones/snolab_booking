@@ -1,4 +1,9 @@
-Check In: {{ visit.check_in }} <br />
-Check Out: {{ visit.check_out }} <br />
-Contact: <a href="mailto:{{ visit.contact }}">{{ visit.contact }}</a><br />
+{% extends 'snolab_booking/base.html' %}
+{% block head_title %}SNOLAB Visit{% endblock %}
+{% block content %}
+<h2>Visit {{ visit.pk }}</h2>
+Check In: {{ visit.check_in }} <br>
+Check Out: {{ visit.check_out }} <br>
+Contact: <a href="mailto:{{ visit.contact }}">{{ visit.contact }}</a><br>
 Experiment: {{ visit.experiment }}
+{% endblock %}

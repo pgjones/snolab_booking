@@ -1,5 +1,9 @@
+{% extends 'snolab_booking/base.html' %}
+{% block head_title %}SNOLAB Apartments{% endblock %}
+{% block content %}
 {% for apartment in apartment_list %}
 <a href="{% url 'apartment' apartment.pk %}">{{ apartment }}</a><br />
 {% empty %}
 No apartments.
 {% endfor %}
+{% endblock %}

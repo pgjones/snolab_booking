@@ -1,6 +1,11 @@
-Apartment: {{ apartment.address_line1 }}<br />
-Bed: {{ booking.bed }} <br />
-Check In: {{ booking.check_in }} <br />
-Check Out: {{ booking.check_out }} <br />
-Booked on: {{ booking.booking_date }}<br />
+{% extends 'snolab_booking/base.html' %}
+{% block head_title %}SNOLAB Booking{% endblock %}
+{% block content %}
+<h2>Booking {{ booking.pk }}</h2>
+Apartment: {{ apartment.address_line1 }}<br>
+Bed: {{ booking.bed }} <br>
+Check In: {{ booking.check_in }} <br>
+Check Out: {{ booking.check_out }} <br>
+Booked on: {{ booking.booking_date }}<br>
 Contact : <a href="mailto:{{ booking.contact }}">{{ booking.contact }}</a>
+{% endblock %}

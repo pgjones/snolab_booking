@@ -1,0 +1,49 @@
+{% load snolab_booking_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{% block head_title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+.container {
+margin: 0 auto;
+max-width: 963px;
+width:963px;
+}
+</style>
+{% block head_script %}
+{% endblock %}
+</head>
+<body>
+<div class="container">
+  <div class="masthead">
+  <img src="http://www.snolab.ca/sites/all/themes/snolab_6a/images/header.jpg" />
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+        <ul class="nav">
+        {% url 'index' as url_index %}
+        <li class="{% nav_active request url_index %}"><a href="{{ url_index }}">Home</a></li>
+        {% url 'visits' as url_visits %}
+        <li class="{% nav_active request url_visits %}"><a href="{{ url_visits }}">Visits</a></li>
+        {% url 'bookings' as url_bookings %}
+        <li class="{% nav_active request url_bookings %}"><a href="{{ url_bookings }}">Bookings</a></li>
+        {% url 'apartments' as url_apartments %}
+        <li class="{% nav_active request url_apartments %}"><a href="{{ url_apartments }}">Apartments</a></li>
+        {% url 'book_visit' as url_book_visit %}
+        <li class="{% nav_active request url_book_visit %}"><a href="{{ url_book_visit }}">Book Visit</a></li>
+
+        <li><a href="#">Contact</a></li>
+        </ul>
+        </div>
+      </div>
+    </div><!-- /.navbar -->
+  </div><!-- /.masthead -->
+{% block content %}
+
+{% endblock %}
+</div>
+<script src="/static/js/jquery.js"></script>
+</body>
+</html>

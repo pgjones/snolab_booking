@@ -1,18 +1,33 @@
+{% extends 'snolab_booking/base.html' %}
+{% block head_title %}SNOLAB Visits{% endblock %}
+{% block head_script %}
+<script src="/static/js/jquery.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  jQuery(".tbcont").hide();
+  //toggle the componenet with class msg_body
+  jQuery(".tbhide").click(function()
+  {
+    jQuery(this).next(".tbcont").slideToggle(100);
+  });
+});
+</script>
+{% endblock %}
+{% block content %}
 {% load snolab_booking_filters %}
-<h2>{{ now.1|month_name }} {{ now.0 }}</h2> 
-<table width="100%">
-<tr>
-<td>
-  <a href="{% url 'visits' year=prev.0 month=prev.1 %}">{{ prev.1|month_name}}</a>
-</td>
-<td align="right">
-  <a href="{% url 'visits' next.0 next.1 %}">{{ next.1|month_name}}</a>
-</td>
-</tr>
-</table>
-
-<center>
-<table width="100%">
+<div class="row-fluid">
+  <div class="span1">
+    <a href="{% url 'visits' prev.0 prev.1 %}">{{ prev.1|month_name}}</a>
+  </div>
+  <div class="span3 offset1">
+    <h3><center>{{ now.1|month_name }} {{ now.0 }}</center></h3>
+  </div>
+  <div class="span1 offset1">
+    <a href="{% url 'visits' next.0 next.1 %}">{{ next.1|month_name}}</a>
+  </div>
+</div>
+<table class="table table-bordered" width="100%">
+<thead>
 <tr>
 <th>Sunday</th>
 <th>Monday</th>
@@ -22,18 +37,27 @@
 <th>Friday</th>
 <th>Saturday</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 {% for day in day_visits %}
   {% if forloop.counter0 != 0 and forloop.counter0|divisibleby:7 %}
     </tr><tr>
   {% endif %}
   <td valign='top'>
-  <center>{{ day.0 }}</center><br />
-  {% for visit in day.1 %}
-    <a href="{% url 'visit' visit.pk %}">{{ visit.contact }}</a><br />
-  {% endfor %}
+    <table class="table table-hover">
+      <thead class="tbhide">
+        <tr><td>{% if day.1 != None %}<a href="#" title="Click to view details.">{{ day.0|day_suffix }} - {{ day.1|length }} visits</a>{% endif %}</td></tr>
+      </thead>
+      <tbody class="tbcont">
+        {% for visit in day.1 %}
+        <tr><td><a href="{% url 'visit' visit.pk %}">{{ visit.contact }}</a></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
   </td>
 {% endfor %}
 </tr>
+</tbody>
 </table>
-</center>
+{% endblock %}

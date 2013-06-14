@@ -1,7 +1,13 @@
-<a href="{% url 'apartments' %}">List Apartments</a><br />
-<a href="{% url 'visit_booking' %}">Book Visit</a>
+{% extends 'snolab_booking/base.html' %}
+{% block head_title %}SNOLAB Visit & Room booking system{% endblock %}
+{% block content %}
+<h2>SNOLAB Visit and apartment/room booking system</h2>
+<blockquote>
+Generally, apartment rooms are prioritised for their respective national experiment collaboration members. 
+If there is availability, rooms will be offered to others at a rate of 25 $CAN per night (this rate also applies to non-department funded UK students). 
+Further surcharges may apply if priority visitors on short-notice trips are displaced. 
+Addition restrictions may also apply depending on the specific choice of apartment. 
+Invoicing for room charges will be organised by the appropriate UK, US or Canadian managing institution.
+</blockquote>
 
-<h1 align="center">Visits</h1>
-{% include "snolab_booking/visits.html" %}
-<h1 align="center">Bookings</h1>
-{% include "snolab_booking/bookings.html" %}
+{% endblock %}
