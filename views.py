@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import logout
 from django.views import generic
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 
 import calendar
 import datetime
@@ -125,3 +127,8 @@ def book_visit(request):
     else:
         form = VisitForm() # An unbound form
     return render(request, 'snolab_booking/book_visit.html', {'form': form})
+
+def logout_(request):
+    """ Logout. """
+    logout(request)
+    return HttpResponseRedirect('http://www.snolab.ca')

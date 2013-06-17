@@ -18,7 +18,7 @@ width:963px;
 <body>
 <div class="container">
   <div class="masthead">
-  <img src="http://www.snolab.ca/sites/all/themes/snolab_6a/images/header.jpg" />
+  <a href="http://www.snolab.ca"><img src="http://www.snolab.ca/sites/all/themes/snolab_6a/images/header.jpg"></a>
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
@@ -33,8 +33,8 @@ width:963px;
         <li class="{% nav_active request url_apartments %}"><a href="{{ url_apartments }}">Apartments</a></li>
         {% url 'book_visit' as url_book_visit %}
         <li class="{% nav_active request url_book_visit %}"><a href="{{ url_book_visit }}">Book Visit</a></li>
-
-        <li><a href="#">Contact</a></li>
+        <li><a href="{{ url_index }}#Contact">Contact</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
         </div>
       </div>

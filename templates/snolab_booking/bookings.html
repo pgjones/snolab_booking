@@ -17,13 +17,13 @@ jQuery(document).ready(function() {
 {% load snolab_booking_filters %}
 <div class="row-fluid">
   <div class="span1">
-    <a href="{% url 'visits' prev.0 prev.1 %}">{{ prev.1|month_name}}</a>
+    <a href="{% url 'bookings' prev.0 prev.1 %}">{{ prev.1|month_name}}</a>
   </div>
   <div class="span3 offset1">
     <h3><center>{{ now.1|month_name }} {{ now.0 }}</center></h3>
   </div>
   <div class="span1 offset1">
-    <a href="{% url 'visits' next.0 next.1 %}">{{ next.1|month_name}}</a>
+    <a href="{% url 'bookings' next.0 next.1 %}">{{ next.1|month_name}}</a>
   </div>
 </div>
 <table class="table table-bordered" width="100%">

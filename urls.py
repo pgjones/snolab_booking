@@ -16,4 +16,6 @@ urlpatterns = patterns('',
 
                        url(r'^apartments/$', views.Apartments.as_view(), name='apartments'),
                        url(r'^apartment/(?P<apartment_id>\d+)/$', views.apartment, name='apartment'),
+
+                       url(r'^logout/$', views.logout_, name='logout'),
 )
