@@ -1,7 +1,8 @@
 {% extends 'snolab_booking/base.html' %}
 {% block head_title %}SNOLAB Visits{% endblock %}
 {% block head_script %}
-<script src="/static/js/jquery.js"></script>
+{% load static from staticfiles %}
+<script src="{% static "js/jquery.js" %}"></script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
   jQuery(".tbcont").hide();
